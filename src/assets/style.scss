@@ -10,6 +10,17 @@ $bootstrap-icons-font-dir: "bootstrap-icons/font/fonts";
     font-family: 'Poppins', sans-serif;
 }
 
+button.btn {
+    i.bi {
+        transition: color 0.3s;
+    }
+    &:hover {
+        i.bi {
+            color: gray !important;
+        }
+    }
+}
+
 .calendar {
     background-color: rgba(0, 0, 0, 0.5);
 

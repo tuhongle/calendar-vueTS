@@ -13,7 +13,7 @@ onMounted(() => {
 
 function changeBackground() {
   let i = Math.floor(Math.random() * 70);
-  card.value.style.backgroundImage = `url('/wallpaper/wallpaper-${i}.jpg')`;
+  card.value.style.backgroundImage = `url('wallpaper/wallpaper-${i}.jpg')`;
 };
 
 // declare variables: weekday, day, month, year
@@ -133,23 +133,23 @@ const setDateNotCurrMonth = (data: number[]) => {
   <div class="container-fluid bg-dark">
     <div class="row">
       <div class="col-12 col-sm-8 col-md-6 col-xl-4 mx-auto py-3 vh-100">
-        <div ref="card" class="card text-center pt-3 h-100 rounded-4 overflow-hidden text-light">
-          <h1 class="mb-1 fw-bolder display-1">{{ weekday }}</h1>
+        <div ref="card" class="card text-center pt-5 h-100 rounded-4 overflow-hidden text-light">
+          <h1 class="mb-3 fw-bolder display-1">{{ weekday }}</h1>
           <div class="d-flex align-items-center">
             <div class="col-4 text-center px-0">
-              <button class="btn btn-outline-secondary border-0" @click="dayUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="dayUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
               <h5 class="mb-0 fw-bold">{{ date }}</h5>
-              <button class="btn btn-outline-secondary border-0" @click="dayDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="dayDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
             </div>
             <div class="col-4 text-center px-0">
-              <button class="btn btn-outline-secondary border-0" @click="monthUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="monthUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
               <h5 class="mb-0 fw-bold">{{ monthText }}</h5>
-              <button class="btn btn-outline-secondary border-0" @click="monthDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="monthDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
             </div>
             <div class="col-4 text-center px-0">
-              <button class="btn btn-outline-secondary border-0" @click="yearUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="yearUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
               <h5 class="mb-0 fw-bold">{{ year }}</h5>
-              <button class="btn btn-outline-secondary border-0" @click="yearDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
+              <button class="btn border-0" @click="yearDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
             </div>
           </div>
           <div class="calendar mt-auto">
