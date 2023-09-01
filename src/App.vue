@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import axios from 'axios';
 import { computed, type ComputedRef, onMounted, type Ref, ref, watch, reactive } from "vue";
 import { type Month, type weekDate } from './types/datemonth';
 import Calendar from "./components/Calendar.vue";
@@ -7,6 +8,7 @@ import Calendar from "./components/Calendar.vue";
 const card : Ref = ref(null);
 onMounted(() => {
   changeBackground();
+  getQuote();
   card.value.style.backgroundPosition = 'center center';
   card.value.style.backgroundSize = 'cover';
 });
@@ -30,6 +32,18 @@ function getData(data: Date) {
   year.value = data.getFullYear();
 }
 
+// get random Quotes
+const quote = ref<string>();
+const author = ref<string>();
+
+async function getQuote() {
+  // const data = await axios.get('https://dummyjson.com/quotes/random');
+  const response = await fetch('https://dummyjson.com/quotes/random');
+  const data = await response.json();
+  quote.value = data.quote!;
+  author.value = data.author!;
+}
+
 // invoke getData() to get first data
 getData(d.value);
 
@@ -39,6 +53,7 @@ watch(
   (data: Date) => {
     changeBackground();
     getData(data);
+    getQuote();
   }
 );
 
@@ -135,7 +150,7 @@ const setDateNotCurrMonth = (data: number[]) => {
       <div class="col-12 col-sm-8 col-md-6 col-xl-4 mx-auto py-3 vh-100">
         <div ref="card" class="card text-center pt-5 h-100 rounded-4 overflow-hidden text-light">
           <h1 class="mb-3 fw-bolder display-1">{{ weekday }}</h1>
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center mb-3">
             <div class="col-4 text-center px-0">
               <button class="btn border-0" @click="dayUp"><i class="bi bi-caret-up-fill fs-1 text-light"></i></button>
               <h5 class="mb-0 fw-bold">{{ date }}</h5>
@@ -152,6 +167,10 @@ const setDateNotCurrMonth = (data: number[]) => {
               <button class="btn border-0" @click="yearDown"><i class="bi bi-caret-down-fill fs-1 text-light"></i></button>
             </div>
           </div>
+          <blockquote class="blockquote px-2">
+            <p class="fs-4">"{{ quote }}"</p>
+            <p class="fs-2 fst-italic opacity-75">- {{ author }} -</p>
+          </blockquote>
           <div class="calendar mt-auto">
             <Calendar :date="date" :month="month" :year="year" @chooseDateInCurrMonth="setDate" @chooseDateInPrevMonth="setDateNotCurrMonth" @chooseDateInNextMonth="setDateNotCurrMonth"/>
           </div>
